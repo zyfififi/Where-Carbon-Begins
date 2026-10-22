@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f3ec" />
+  <meta name="description" content="碳从哪里来：2015—2022 中国省域城乡居民生活直接碳排放的交互数据故事。" />
+  <title>碳从哪里来 · 一张地图里的两种生活</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="site.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="readability.css" />
+  <script defer src="vendor/echarts.min.js"></script>
+  <script defer src="data/history.js"></script>
+  <script defer src="vendor/china-map.js"></script>
+  <script defer src="theme.js"></script>
+  <script defer src="chart-policy.js"></script>
+  <script defer src="insights.js"></script>
+  <script defer src="carbon-3d.js"></script>
+  <script defer src="analysis.js"></script>
+  <script defer src="routes.js"></script>
+  <script defer src="reading.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="logo" href="#cover" aria-label="碳从哪里来，返回首页"><span class="logo-mark"><i></i><i></i><i></i></span><span>碳从哪里来<em>WHERE CARBON BEGINS</em></span></a>
+    <div class="global-context"><label>观察省份<select id="global-province" aria-label="全站观察省份"></select></label><label>年份<select id="global-year" aria-label="全站观察年份"></select></label></div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="side-nav">☰ 目录</button>
+    <button class="header-action" id="start-story" type="button">3 分钟导览 <span>↘</span></button>
+  </header>
+
+  <aside class="side-nav" id="side-nav">
+    <a href="#cover" class="side-brand" aria-label="碳从哪里来首页">碳从<span>哪里来</span><small>WHERE CARBON BEGINS</small></a>
+    <nav class="chapters" aria-label="页面导航">
+      <a href="#cover"><span>00</span><div>首页</div></a>
+      <a href="#atlas"><span>01</span><div>省域观察</div></a>
+      <a href="#timeline"><span>02</span><div>年度变化</div></a>
+      <a href="#retrieval"><span>03</span><div>碳源检索</div></a>
+      <a href="#duality"><span>04</span><div>城乡切面</div></a>
+      <a href="#landscape"><span>05</span><div>省际坐标</div></a>
+      <a href="#change"><span>06</span><div>变化拆解</div></a>
+      <a href="#passport"><span>07</span><div>数据护照</div></a>
+    </nav>
+    <div class="side-footer"><i></i>30 省 · 2015—2022<br><span>居民生活燃料直接 CO₂</span><small>图中不含购电、购热</small></div>
+  </aside>
+  <button class="nav-scrim" aria-label="关闭目录" type="button" hidden></button>
+
+  <main>
+    <section id="cover" class="cover chapter-screen">
+      <div class="cover-orbit orbit-one" aria-hidden="true"></div>
+      <div class="cover-orbit orbit-two" aria-hidden="true"></div>
+      <div class="cover-grid" aria-hidden="true"></div>
+      <div class="cover-copy">
+        <p class="kicker"><span class="pulse"></span><span class="kicker-copy"><span>2015—2022</span><i>·</i><span>30 个省级地区</span><i>·</i><span>17 类燃料</span></span></p>
+        <h1>碳从<br /><span>哪里来</span></h1>
+        <p class="lede">2015—2022，中国省域城乡居民生活燃料图谱。</p>
+        <div class="cover-cta"><button id="cover-enter" class="primary-button" type="button">自由探索 <span>→</span></button></div>
+        <nav class="cover-prompts" aria-label="推荐追问">
+          <a href="#atlas-map">看各省碳排放如何分布</a>
+          <a href="#timeline-comparison">看历年排放如何变化</a>
+          <a href="#duality">看城乡如何不同</a>
+        </nav>
+      </div>
+      <div class="cover-sculpture" aria-hidden="true">
+        <div class="sculpture-ring ring-a"></div><div class="sculpture-ring ring-b"></div><div class="sculpture-ring ring-c"></div>
+        <div class="electron-orbit electron-orbit-a"><i></i></div><div class="electron-orbit electron-orbit-b"><i></i></div><div class="electron-orbit electron-orbit-c"><i></i></div><div class="electron-orbit electron-orbit-d"><i></i></div>
+        <div class="sculpture-core"><span>CO₂</span><small>生活直接排放</small></div>
+        <div class="sculpture-dot dot-a"></div><div class="sculpture-dot dot-b"></div><div class="sculpture-dot dot-c"></div>
+      </div>
+    </section>
+
+    <section id="atlas" class="chapter atlas chapter-screen">
+      <div class="chapter-intro">
+        <div><h2>生活排放的地域分布</h2></div>
+      </div>
+      <div class="atlas-shell" id="atlas-map">
+        <div class="atlas-toolbar">
+          <div class="year-readout"><span>观察年份</span><strong id="year-label">2022</strong><button id="play" type="button" aria-label="播放年份">▶</button></div>
+          <div class="year-slider-wrap"><input id="year-slider" type="range" min="2015" max="2022" step="1" value="2022" aria-label="选择年份" /><div class="year-ticks"><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span></div></div>
+          <div class="atlas-mode" role="group" aria-label="地图指标"><button class="active" type="button" data-metric="total">总量</button><button type="button" data-metric="ruralShare">农村占比</button><button type="button" data-metric="difference">结构差异</button></div>
+        </div>
+        <div class="atlas-grid">
+          <div class="map-stage">
+            <div class="map-caption"><span>省级燃料图谱</span><small>悬停或点击省份</small></div>
+            <div id="map" class="map" role="img" aria-label="中国省级居民生活直接碳排放地图"></div>
+            <div class="map-legend"><span id="legend-title">总排放（Mt CO₂）</span><i class="legend-ramp"></i><span id="legend-min">0</span><span id="legend-max">—</span><b><i></i>未纳入</b></div>
+            <p class="map-note">固定色标 · 总量从零起算 · 未覆盖地区不代表零排放</p>
+          </div>
+          <aside class="atlas-detail" aria-live="polite">
+            <div class="detail-eyebrow"><span class="pin"></span><span id="detail-location">当前省份 · 河北</span><span id="detail-rank">NO.01</span></div>
+            <h3 id="detail-name">河北</h3>
+            <p id="detail-copy" class="detail-copy">农村排放更高，但真正拉开差距的，是天然气与煤制品共同构成的燃料组合。</p>
+            <div class="big-number"><strong id="detail-total">40.01</strong><span>Mt CO₂<br />城乡合计</span></div>
+            <div class="split-bars"><div><span>城镇 <b id="detail-urban">12.75</b></span><i><em id="urban-fill"></em></i></div><div><span>农村 <b id="detail-rural">27.26</b></span><i><em id="rural-fill"></em></i></div></div>
+            <div class="detail-stats"><div><span>农村占比</span><strong id="detail-share">68.1%</strong></div><div><span>城乡用能结构差异度</span><strong id="detail-diff">0.43</strong><small>0 接近 · 1 不同 / 原始 17 类</small></div><div><span>城镇 / 农村人均 · t/人</span><strong id="detail-percapita">—</strong></div></div>
+            <a class="detail-next" href="#structure-overlap">看这个省的城乡结构 ↗</a>
+            <div class="fuel-chips" id="detail-fuels"></div>
+            <button class="detail-next" id="next-province" type="button">查看下一个省份 <span>→</span></button>
+          </aside>
+        </div>
+      </div>
+      <div class="discovery-grid" id="atlas-discoveries" aria-label="从一个发现开始">
+        <button type="button" class="discovery-card" data-discover="hebei"><span>01 / 总量与构成</span><strong>总量几乎没变，<br>内部发生了什么？</strong><div id="discover-hebei" class="discovery-visual" aria-hidden="true"></div><small>河北 · 2015 → 2022 <b>查看变化拆解 ↗</b></small></button>
+        <button type="button" class="discovery-card" data-discover="denominator"><span>02 / 换一个分母</span><strong>总量更多，<br>人均也一定更多吗？</strong><div id="discover-population" class="discovery-visual" aria-hidden="true"></div><small>30 省合计 · 2022 <b>进入人均坐标 ↗</b></small></button>
+        <button type="button" class="discovery-card" data-discover="structure"><span>03 / 拆开构成</span><strong>同一个省，<br>城乡的燃料一样吗？</strong><div id="discover-grain" class="discovery-visual" aria-hidden="true"></div><small>河北 · 2022 · 部门内占比 <b>进入城乡切面 ↗</b></small></button>
+      </div>
+      <div class="scroll-cue"><span>01</span><i></i><span>02</span></div>
+    </section>
+
+    <section id="timeline" class="chapter timeline chapter-screen">
+      <div class="timeline-head"><div><h2>排放与碳源的年度变化</h2></div></div>
+      <div class="timeline-controls timeline-controls-v2"><div class="timeline-select-block"><span>比较省份 <b id="selection-count">3 / 4</b></span><div id="province-pool" class="province-pool" aria-label="多选比较省份"></div></div><div class="timeline-switch" role="group" aria-label="趋势口径"><button type="button" class="active" data-trend-mode="total">城乡合计</button><button type="button" data-trend-mode="urban">城镇</button><button type="button" data-trend-mode="rural">农村</button></div></div>
+      <div class="timeline-grid"><div id="trend" class="trend" role="img" aria-label="省份年度排放趋势图"></div><aside class="timeline-story"><h3 id="timeline-title">河北</h3><p id="timeline-copy"></p><div class="timeline-kpi"><span id="timeline-range">2015 → 2022</span><strong id="timeline-change">—</strong><small>城乡合计变化 · Mt CO₂</small></div><div class="mini-stream" id="mini-stream"></div><p class="method-mini">人口数据缺失年份不显示人均值；跨年仅作描述。</p></aside></div>
+      <details class="data-details"><summary>多省趋势与年份矩阵 · 查看数值</summary><button id="export-trend" class="quiet-button" type="button">下载当前比较 CSV ↓</button><div id="trend-table" class="data-scroll"></div></details>
+    </section>
+
+    <section id="retrieval" class="chapter retrieval-page chapter-screen">
+      <div class="chapter-intro"><div><h2>按条件查找碳源</h2></div></div>
+      <article class="retrieval-panel" id="carbon-retrieval">
+        <div class="retrieval-controls">
+          <label class="retrieval-query">关键词<input id="retrieval-query" type="search" placeholder="搜索省份、燃料或年份" autocomplete="off" /></label>
+          <label>省份<select id="retrieval-province" aria-label="检索省份"><option value="">全部省份</option></select></label>
+          <label>年份<select id="retrieval-year" aria-label="检索年份"><option value="">全部年份</option></select></label>
+          <label>燃料<select id="retrieval-fuel" aria-label="检索燃料"><option value="">全部燃料</option></select></label>
+          <label>城乡<select id="retrieval-side" aria-label="检索城乡"><option value="all">城乡合计</option><option value="urban">城镇</option><option value="rural">农村</option></select></label>
+          <button id="retrieval-reset" class="quiet-button" type="button">清空筛选</button>
+        </div>
+        <div class="retrieval-summary" id="retrieval-summary" aria-live="polite"></div>
+        <div class="retrieval-results" id="retrieval-results" aria-live="polite"></div>
+      </article>
+      <div class="retrieval-visuals" id="retrieval-visuals" aria-live="polite">
+        <div class="retrieval-visuals-head"><h3>记录预览</h3><strong id="retrieval-preview-context"></strong></div>
+        <div class="retrieval-viz-layout">
+          <article class="viz-panel retrieval-preview-panel"><div class="viz-panel-head"><div><span class="viz-index">A</span><h3 id="retrieval-preview-title">燃料构成</h3></div><small id="retrieval-preview-scope">Mt CO₂</small></div><div id="retrieval-preview-chart" class="retrieval-preview-chart" role="img" aria-label="检索结果城乡燃料构成图"></div></article>
+          <article class="viz-panel retrieval-preview-panel"><div class="viz-panel-head"><div><span class="viz-index">B</span><h3 id="retrieval-ring-title">城乡排放占比</h3></div><small id="retrieval-ring-scope">完整城乡</small></div><div id="retrieval-preview-ring" class="retrieval-preview-ring" role="img" aria-label="检索结果城乡排放占比环图"></div></article>
+        </div>
+        <p id="retrieval-preview-empty" class="retrieval-empty" hidden>没有匹配记录</p>
+      </div>
+    </section>
+
+    <section id="duality" class="chapter duality chapter-screen">
+      <div class="duality-head"><div><h2>同一省份，城乡对照</h2></div></div>
+      <article class="viz-panel overlap-panel" id="structure-overlap">
+        <div class="viz-panel-head"><div><span class="viz-index">◎</span><h3>同一省份，两种生活：哪些相同，哪些不同？</h3></div><small id="overlap-context"></small></div>
+        <div class="overlap-layout"><div><div id="overlap-fuels" class="fuel-focus" role="group" aria-label="结构条带燃料聚焦"></div><div id="overlap-bars" class="overlap-chart" role="img" aria-label="当前省份城乡各自百分百燃料构成条带"></div><p id="overlap-readout" class="overlap-readout" aria-live="polite"></p></div><aside class="overlap-summary"><span>六组燃料的共同构成</span><strong id="overlap-common">—</strong><div class="overlap-meter" aria-label="六组共同部分与剩余部分"><i id="overlap-meter-shared"></i><i id="overlap-meter-gap"></i></div><p>各组较小占比之和</p><div class="overlap-d-values"><span>城乡用能结构差异度 <b id="overlap-d17">—</b></span></div><p>原始 17 类 · 0 相同 · 1 完全不同</p></aside></div>
+        <p class="viz-caption">各条带独立归一为 100%；聚焦不改变数据或分母。</p>
+        <details class="data-details"><summary>计算说明与完整明细</summary><p class="calculation-note">条带把 17 类燃料合并为六组，共同构成的补数是六组差异 D₆＝<b id="overlap-d6">—</b>，不是正文采用的 D₁₇。分类越粗，部分差异会被抵消。<a href="#granularity">在数据护照比较三种粒度 ↗</a></p><div id="overlap-detail" class="data-scroll"></div></details>
+      </article>
+      <div class="comparison-divider" id="duality-pair"><h3>两省并置</h3></div>
+      <div class="duality-controls"><label>A 省<select id="province-a" aria-label="A省"></select></label><button id="swap" type="button" aria-label="交换省份">⇄</button><label>B 省<select id="province-b" aria-label="B省"></select></label><div class="duality-hint"><i class="urban-dot"></i>城镇 <i class="rural-dot"></i>农村 · 两省条形图同尺度</div></div>
+      <div class="fuel-focus" id="fuel-focus" role="group" aria-label="同步聚焦燃料"></div>
+      <div class="duality-grid"><article class="duality-card card-a"><div class="duality-card-head"><span>A / <b id="a-name">河北</b></span><strong id="a-total">40.01</strong><small>Mt CO₂</small></div><div class="dual-overview"><div id="a-ring" class="dual-ring" role="img" aria-label="A省城乡排放占比环图"></div><div class="dual-share-readout" id="a-shares"></div></div><div class="chart-mini-title">燃料排放组成 <span>Mt CO₂ · 与 B 省同尺度</span></div><div id="a-bars" class="dual-bars" role="img" aria-label="A省城乡燃料堆叠条形图"></div><p id="a-copy" class="dual-copy"></p></article><article class="duality-card card-b"><div class="duality-card-head"><span>B / <b id="b-name">浙江</b></span><strong id="b-total">19.95</strong><small>Mt CO₂</small></div><div class="dual-overview"><div id="b-ring" class="dual-ring" role="img" aria-label="B省城乡排放占比环图"></div><div class="dual-share-readout" id="b-shares"></div></div><div class="chart-mini-title">燃料排放组成 <span>Mt CO₂ · 与 A 省同尺度</span></div><div id="b-bars" class="dual-bars" role="img" aria-label="B省城乡燃料堆叠条形图"></div><p id="b-copy" class="dual-copy"></p></article></div>
+      <div class="reading-zone" id="duality-normalized"><span>03</span><div><h3>归一比较</h3></div></div>
+      <div class="analysis-grid dual-support"><article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">C</span><h3>燃料占比</h3></div><small>A / B · %</small></div><div id="dual-fingerprint" class="analysis-chart" role="img" aria-label="两省燃料占比哑铃图"></div><p class="viz-caption">点：省份占比 · 线长：构成差异</p></article><article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">D</span><h3>城乡人均</h3></div><small>t CO₂ / 人</small></div><div id="dual-percapita" class="analysis-chart" role="img" aria-label="两省城乡人均近似排放对照"></div><p class="viz-caption" id="dual-pop-note">按年末人口近似归一</p></article></div>
+      <div class="duality-takeaway"><p id="duality-takeaway"></p><button id="random-pair" type="button">换一组对照 ↗</button></div>
+    </section>
+
+    <section id="landscape" class="chapter chapter-screen landscape">
+      <div class="chapter-intro"><div><h2>总量与人均的省际对照</h2></div></div>
+      <div class="reading-zone" id="landscape-scale"><span>01</span><div><h3>规模与人均</h3></div></div>
+      <div class="section-toolbar"><div class="landscape-mode" role="group" aria-label="省际坐标口径"><button type="button" data-landscape="percapita" class="active" aria-pressed="true">人均坐标</button><button type="button" data-landscape="total" aria-pressed="false">总量坐标</button></div><span id="landscape-context"></span></div>
+      <p class="availability-note" id="landscape-note" role="status"></p>
+      <div class="analysis-grid landscape-grid">
+        <article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">A</span><h3>城乡排放星图</h3></div><small>点选省份</small></div><div class="chart-keys"><span><i class="urban-dot"></i>城镇总量更高</span><span><i class="rural-dot"></i>农村总量不低于城镇</span><span><i class="selected-dot"></i>当前聚焦</span></div><div id="province-scatter" class="analysis-chart scatter-chart" role="img" aria-label="30省城镇农村排放散点图"></div><p class="viz-caption">横轴：城镇 · 纵轴：农村 · 气泡：城乡总量</p><details class="data-details"><summary>查看散点与排名数值</summary><div id="landscape-table" class="data-scroll"></div></details></article>
+        <article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">B</span><h3>排放规模序列</h3></div><small>30 省 · Mt CO₂</small></div><div class="chart-keys"><span><i class="urban-dot"></i>城镇</span><span><i class="rural-dot"></i>农村</span></div><div class="rank-scroll"><div id="province-ranking" class="ranking-chart" role="img" aria-label="30省城乡总排放排名"></div></div><p class="viz-caption">城镇＋农村 · 同一标尺</p></article>
+        <div class="reading-zone full-panel" id="landscape-structure"><span>02</span><div><h3>城乡燃料指纹</h3></div></div>
+        <article class="viz-panel full-panel"><div class="viz-panel-head"><div><span class="viz-index">C</span><h3>一省两面 · 城乡燃料指纹</h3></div><label class="focus-select">排序<select id="fingerprint-sort" aria-label="燃料指纹排序"><option value="difference">城乡结构差异度</option><option value="coal">煤炭占比差</option><option value="gas">天然气占比差</option><option value="total">排放总量</option></select></label></div>
+          <div class="matrix-controls"><label>聚焦燃料<select id="fingerprint-focus" aria-label="矩阵聚焦燃料"></select></label><label><input type="checkbox" id="fingerprint-values"> 显示百分比</label><label><input type="checkbox" id="fingerprint-other"> 展开极小余量</label></div>
+          <div class="matrix-key"><span>部门内燃料占比</span><span>0%</span><i></i><span>100%</span><small>城镇、农村分别归一，左右共用固定色阶</small></div>
+          <div class="fingerprint-scroll" tabindex="0" aria-label="横向和纵向滚动查看城乡燃料矩阵"><div id="fuel-fingerprint" class="fingerprint-chart" role="img" aria-label="30省城镇与农村并置的燃料占比矩阵"></div></div>
+          <p id="fingerprint-note" class="viz-caption"></p>
+          <details class="data-details"><summary>展开全部燃料数值（包含其他油品）</summary><button id="export-matrix" class="quiet-button" type="button">下载当前年份原始燃料 CSV ↓</button><div id="fingerprint-table" class="data-scroll"></div></details>
+        </article>
+      </div>
+    </section>
+
+    <section id="change" class="chapter chapter-screen change-section">
+      <div class="chapter-intro"><div><h2>排放增减的燃料来源</h2></div></div>
+      <div class="reading-zone" id="change-bridge"><span>01</span><div><h3>燃料变化桥</h3></div></div>
+      <div class="section-toolbar change-toolbar"><label>起点年份<select id="change-start" aria-label="变化起点年份"></select></label><span class="change-arrow">→</span><label>终点年份<select id="change-end" aria-label="变化终点年份"></select></label><span id="change-context"></span></div>
+      <div class="change-metrics"><div><span>起点排放</span><strong id="change-before">—</strong><small>Mt CO₂</small></div><div><span>终点排放</span><strong id="change-after">—</strong><small>Mt CO₂</small></div><div><span>期间净变化</span><strong id="change-net">—</strong><small id="change-rate">—</small></div></div>
+      <div class="analysis-grid"><article class="viz-panel full-panel"><div class="viz-panel-head"><div><span class="viz-index">A</span><h3>燃料变化桥</h3></div><small>差额 · Mt CO₂</small></div><div id="change-waterfall" class="analysis-chart waterfall-chart" role="img" aria-label="按燃料拆分的排放变化瀑布图"></div><p class="viz-caption">起点＋燃料增减＝终点 · 非因果贡献</p><details class="data-details"><summary>查看逐项变化明细</summary><div id="change-table" class="data-scroll"></div></details></article><article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">B</span><h3>城乡差额</h3></div><small>各燃料 · Mt CO₂</small></div><div id="change-fuels" class="analysis-chart" role="img" aria-label="城乡分燃料排放差额发散图"></div><p class="viz-caption">右侧增加 · 左侧减少</p></article><article class="viz-panel"><div class="viz-panel-head"><div><span class="viz-index">C</span><h3>城乡起终点</h3></div><small>Mt CO₂</small></div><div id="change-slope" class="analysis-chart" role="img" aria-label="城镇农村起终点排放坡度图"></div><p class="viz-caption">仅连接两个端点</p></article></div>
+      <div class="analysis-reading"><p id="change-insight"></p></div>
+    </section>
+
+    <section id="passport" class="chapter passport">
+      <div class="passport-copy"><h2>数据来源与使用边界</h2><p>居民生活燃料直接排放；不含购电、购热与隐含排放。</p><button class="quiet-button" id="export-all" type="button">下载历年原始燃料明细 CSV ↓</button><a class="text-link" href="data/history.js" download>下载结构化数据 JS ↓</a><button id="share-state" class="quiet-button" type="button">复制当前观察链接 ↗</button><p id="share-status" role="status"></p><input id="share-url" type="text" readonly hidden aria-label="当前观察链接"></div>
+      <div class="passport-grid"><article><span>数据源</span><strong>CEADs</strong><p>2015—2022 年中国省级分部门 CO₂ 排放清单，30 个省级地区，17 类燃料。</p></article><article><span>观察对象</span><strong>城乡生活</strong><p>居民生活部门燃料燃烧产生的直接排放；不含购电、购热等间接排放。</p></article><article><span>计算方式</span><strong>规模 × 结构</strong><p>排放总量、城乡占比、燃料构成、结构差异 D，以及按年末人口的近似归一。</p></article><article><span>使用边界</span><strong>不做因果</strong><p>不同年度清单修订批次未完全统一，跨年变化只作描述，不直接归因政策或行为。</p></article></div>
+      <article class="viz-panel granularity-panel" id="granularity"><div class="viz-panel-head"><div><span class="viz-index">D</span><h3>分类改变了，差异数值也会改变</h3></div><small>30 省汇总 · 同一数据 / 三种粒度</small></div><p class="formula">D＝½Σ|城镇燃料占比－农村燃料占比|　（0：相同；1：完全不同）</p><div id="grain-chart" class="analysis-chart" role="img" aria-label="30省汇总四类六组十七类城乡燃料结构差异历年对照"></div><p class="viz-caption">地图及省份卡统一用原始 17 类 D；结构条带另标 D₆。四类为煤炭、油品、液化石油气、天然气；六组进一步拆分汽油、柴油、其他油品。合并类别会抵消部分差异，因此不能混用数值或排名。D 是本作品计算的描述指标，不是 CEADs 官方指标。</p><details class="data-details"><summary>展开逐年粒度对照数值</summary><div id="grain-table" class="data-scroll"></div></details></article>
+      <div class="method-boundary" id="passport-boundary"><strong>数据边界与来源</strong><p>排放：<a href="https://www.ceads.net.cn/" target="_blank" rel="noopener noreferrer">CEADs 中国碳核算数据库 ↗</a>；人口：<a href="https://data.stats.gov.cn/" target="_blank" rel="noopener noreferrer">国家统计局年度分省数据 ↗</a>。单位 Mt＝百万吨；人均＝Mt×100÷人口（万人）。2015 年人口缺失，不补零、不插值。30 省合计不等于含全部地区的全国清单。燃料类别不能直接证明用途；购电、购热与商品服务隐含排放不在范围内。</p></div>
+      <div class="passport-footer"><span>碳从哪里来 / WHERE CARBON BEGINS</span><span>信息可视化 · 数据可视化 · 交互视觉设计</span><span>2026</span></div>
+    </section>
+  </main>
+  <dialog id="chart-dialog" aria-label="图表放大阅读"><div class="dialog-toolbar"><span>放大阅读 · Esc 返回</span><button id="close-chart" type="button">关闭 ×</button></div><div id="chart-dialog-body"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

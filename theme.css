@@ -1,0 +1,103 @@
+/* Warm paper + forest green. Loaded last so the original layout stays intact. */
+:root {
+  color-scheme: light;
+  --ink:#263d32;
+  --muted:#657264;
+  --bg:#f5f3ec;
+  --bg2:#eef0e6;
+  --panel:#fcfbf7;
+  --panel2:#e9eee2;
+  --line:#d5ddce;
+  --teal:#2d6656;
+  --mint:#356b51;
+  --orange:#995032;
+  --yellow:#8c681d;
+  --blue:#527b87;
+}
+::selection{background:#c9dbc1;color:#193d2d}
+body{background:var(--bg)}
+.noise{opacity:.022;mix-blend-mode:multiply}
+.site-header{background:rgba(245,243,236,.93);border-bottom-color:var(--line)}
+.side-nav{background:#eeeee3;border-right-color:#d2dacb;scrollbar-color:#bac8af #eeeee3}
+.side-brand{color:var(--ink)}
+.side-eyebrow,.side-nav .chapters a>span,.side-nav .chapters small,
+.side-footer>span,.side-footer>small{color:var(--muted)}
+.side-nav .chapters a>div{color:#4f6252}
+.side-nav .chapters a.active{background:linear-gradient(90deg,#dbe6d3,#e7ecdf);border-color:#c7d6bd}
+.side-nav .chapters a:hover{background:#e3e9dc}
+.side-nav .chapters a.active>div,.side-nav .chapters a.active>span{color:#204f3e}
+.side-footer{color:#49614f}
+.header-action:hover,.nav-toggle:hover{background:#e3eadc}
+select{background:var(--panel);color:var(--ink);border-color:#cad4c3}
+button{transition:background-color .15s,color .15s,border-color .15s}
+.primary-button,.province-pill.active,.atlas-mode button.active,
+.landscape-mode button.active,.lab-scenes button.active,
+.lab-views button.active{background:var(--teal);color:#fcfbf7;border-color:var(--teal)}
+.primary-button:hover{background:#214e40}
+.timeline-switch button.active{background:var(--teal);color:#fcfbf7}
+.toast{background:var(--teal);color:#fcfbf7;box-shadow:0 8px 30px rgba(38,61,50,.16)}
+
+/* Cover: keep the kinetic sculpture, replace neon with mineral tones. */
+.cover{background:radial-gradient(ellipse at 79% 44%,#d7e3c9 0,#e9ecdc 29%,transparent 54%),linear-gradient(125deg,#f8f5ec,#eeeee0)}
+.cover-grid{opacity:.48;background-image:linear-gradient(rgba(61,100,66,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(61,100,66,.08) 1px,transparent 1px)}
+.lede{color:#536b58}
+.pulse{box-shadow:0 0 0 7px rgba(181,102,67,.1)}
+.cover-sculpture{filter:drop-shadow(0 22px 35px rgba(62,93,48,.16))}
+.sculpture-ring{border-color:rgba(45,102,86,.4)}
+.ring-b{border-color:rgba(181,102,67,.42)}
+.ring-c{border-color:rgba(71,113,60,.38)}
+.sculpture-core{background:radial-gradient(circle at 31% 25%,#dce9bd 0,#82aa72 30%,#3d7858 58%,#214d3c 85%);box-shadow:0 22px 55px rgba(52,83,43,.22),inset -16px -18px 28px rgba(20,54,38,.28),inset 3px 3px 14px rgba(246,251,221,.35)}
+.sculpture-core span{color:#f8f7e9;text-shadow:0 2px 8px rgba(28,64,42,.22)}
+.sculpture-core small{color:#f0f3df}
+.sculpture-dot{box-shadow:0 0 0 8px rgba(181,102,67,.1)}
+.electron-orbit{border-color:rgba(69,111,73,.25)}
+.electron-orbit i{box-shadow:0 0 12px rgba(45,102,86,.25),0 0 0 6px rgba(45,102,86,.09)}
+.electron-orbit-a i{box-shadow:0 0 12px rgba(181,102,67,.25),0 0 0 6px rgba(181,102,67,.09)}
+.electron-orbit-b i{box-shadow:0 0 12px rgba(140,104,29,.22),0 0 0 6px rgba(140,104,29,.09)}
+.electron-orbit-c i{box-shadow:0 0 12px rgba(53,107,81,.22),0 0 0 6px rgba(53,107,81,.09)}
+.electron-orbit-d i{box-shadow:0 0 12px rgba(82,123,135,.22),0 0 0 6px rgba(82,123,135,.09)}
+
+/* Large surfaces use slightly different paper tones, not dark islands. */
+.chapter,.chapter:nth-child(odd){background:linear-gradient(155deg,#f7f5ee,#f0f1e7)}
+.timeline{background:radial-gradient(ellipse at 12% 8%,rgba(197,173,113,.08),transparent 45%),var(--bg)}
+.duality{background:var(--bg)}
+.atlas-shell{background:var(--panel);border:1px solid var(--line)}
+.atlas-detail{background:linear-gradient(145deg,#e7eddf,#eff0e5)}
+.atlas-detail:after{border-color:rgba(45,102,86,.13);box-shadow:0 0 0 30px rgba(45,102,86,.025),0 0 0 60px rgba(45,102,86,.018)}
+.detail-copy,.timeline-story p,.dual-copy,.duality-takeaway p{color:#596f5d}
+.year-ticks,.map-note{color:var(--muted)}
+.split-bars i,.dual-row .bar-track{background:#dce3d4}
+.fuel-chip{color:#536b58;background:rgba(252,251,247,.65);border-color:#b9ccb0}
+.legend-ramp,.matrix-key>i{background:linear-gradient(90deg,#edf0dc,#c2d3b0,#739e79,#285f4a)}
+.map-legend b i{background:#e2e0d6;border:1px solid #c6c8bc}
+.timeline-controls-v2,.section-toolbar{background:#eeefe4}
+.timeline-zone>span{color:#839777}
+.province-pill{background:#fcfbf7}
+.province-pill:hover:not(.active){background:#e2ead9;border-color:#b4c6a7}
+.viz-panel,.duality-card{background:var(--panel);box-shadow:0 3px 14px rgba(50,70,39,.025)}
+.fuel-focus button.active{background:#e3ebdb;color:#285b47;border-color:#95ae85}
+.fuel-focus button:hover{border-color:#95ae85}
+.card-b:before{background:var(--blue)}
+.rank-scroll,.fingerprint-scroll{scrollbar-color:#a5ba94 #f0f1e8}
+.change-metrics{background:linear-gradient(110deg,#e5ecda,#eff0e4)}
+.passport{background:linear-gradient(125deg,#f5f3ec,#e6ebda)}
+.passport-copy>p:not(.chapter-label),.passport-grid article p{color:#5a6e5c}
+.passport-grid article{background:#f9f8f1}
+.text-link{border-bottom-color:#9bb18d}
+
+/* Match the real WebGL environment and its equivalent 2D view. */
+.carbon-lab{background:#f7f7ee;border-color:#c7d5bb;box-shadow:none}
+.lab-header{background:linear-gradient(100deg,#eaf0df,#f5f5eb)}
+.lab-stage{background:#f7f7ee}
+.lab-views{background:#e4ebdb}
+.lab-axis-note{color:#65765e}
+.lab-year-key{color:var(--yellow)}
+.lab-camera{background:rgba(252,251,247,.96);border-color:#c3d1b7;box-shadow:0 3px 14px rgba(45,72,35,.07)}
+.lab-camera button:hover,.lab-camera button[aria-pressed=true]{background:#e1ead7;color:#285b47}
+.lab-reading{color:#596f5d}
+.lab-data table{color:#48614f}
+.lab-data .current-year{color:#77571c;background:#efebd9}
+.lab-data thead{background:#edf0e5}
+.lab-data tbody tr:hover{background:#e7eddf}
+.lab-status{color:#8c681d}
+@media(max-width:760px){.nav-scrim:not([hidden]){background:rgba(32,51,33,.32)}}

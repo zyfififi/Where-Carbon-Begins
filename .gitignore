@@ -1,0 +1,23 @@
+# Local handoff notes and generated browser screenshots
+HANDOFF.md
+tests/artifacts/
+
+# Local raw source workbooks are not part of the static site
+data_raw/
+*.xlsx
+*.xls
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependencies, credentials, and local configuration
+node_modules/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.log
+
